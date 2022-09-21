@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alga.alga.api.assembler.CarroMapper;
+import com.alga.alga.api.dto.CarroDto;
 import com.alga.alga.domain.model.Carro;
 import com.alga.alga.domain.repository.CarroRepository;
 
@@ -28,6 +30,10 @@ public class CarroController {
 	
 	private CarroRepository carroRepor;
 	
+	private CarroMapper carroMapper;
+	
+	
+	
 	
 	@GetMapping
 	public List<Carro> GetList(){
@@ -36,9 +42,9 @@ public class CarroController {
 	
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Carro> GetById( @PathVariable("id") Long id){
+	public ResponseEntity<CarroDto> GetById( @PathVariable("id") Long id){
 		return carroRepor.findById(id)
-				.map(ResponseEntity::ok)
+				.map(carro -> ResponseEntity.ok(carroMapper.toModel(carro)))
 				.orElse(ResponseEntity.notFound().build());
 	};
 	
