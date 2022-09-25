@@ -36,8 +36,8 @@ public class CarroController {
 	
 	
 	@GetMapping
-	public List<Carro> GetList(){
-		return carroRepor.findAll();
+	public List<CarroDto> GetList(){
+		return carroMapper.toCarroDTO(carroRepor.findAll());
 	};
 	
 	
