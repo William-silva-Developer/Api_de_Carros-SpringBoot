@@ -1,7 +1,6 @@
 package com.alga.alga.api.assembler;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
